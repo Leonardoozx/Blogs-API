@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const environment = process.env.NODE_ENV || 'test';
-
+// starts the project
 const suffix = {
   dev: '-dev',
   development: '-dev',
