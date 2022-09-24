@@ -5,4 +5,14 @@ const findUserByEmail = async (email) => {
   return user;
 };
 
-module.exports = { findUserByEmail };
+const insertUser = async ({ displayName, email, password, image }) => {
+  const newUser = await User.create({
+    displayName,
+    email,
+    password,
+    image,
+  });
+  return newUser;
+};
+
+module.exports = { findUserByEmail, insertUser };
