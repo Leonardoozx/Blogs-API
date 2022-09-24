@@ -1,8 +1,8 @@
-const UserModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
-      id: { type: DataTypes.INTEGER, primaryKey: true },
+      id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
       displayName: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
@@ -11,10 +11,8 @@ const UserModel = (sequelize, DataTypes) => {
     {
       timestamps: false,
       underscored: true,
-      tableName: 'users'
+      tableName: 'users',
     }
   );
   return User;
 };
-
-module.exports = UserModel;
