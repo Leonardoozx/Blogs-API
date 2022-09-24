@@ -9,7 +9,7 @@ router.post(
   '/',
   loginMiddlewares.verifiesIfEmailAndPassExists,
   loginMiddlewares.verifyEmailAndPass,
-  loginControllers.logIn,
+  loginControllers.login,
 );
 
 module.exports = router;
