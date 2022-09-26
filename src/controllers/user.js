@@ -12,4 +12,10 @@ const showAllUsers = async (_req, res) => {
   res.status(200).json(users);
 };
 
-module.exports = { insertUser, showAllUsers };
+const showUserById = async ({ params }, res) => {
+  const { type, message, status } = await userServices.showUserById(+params.id);
+  if (type) return res.status(status).json({ message });
+  res.status(status).json(message);
+};
+
+module.exports = { insertUser, showAllUsers, showUserById };
