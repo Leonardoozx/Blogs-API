@@ -7,4 +7,9 @@ const insertUser = async ({ body }, res) => {
   res.status(201).json({ token });
 };
 
-module.exports = { insertUser };
+const showAllUsers = async (_req, res) => {
+  const users = await userServices.showAllUsers();  
+  res.status(200).json(users);
+};
+
+module.exports = { insertUser, showAllUsers };
