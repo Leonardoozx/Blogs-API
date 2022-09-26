@@ -15,4 +15,15 @@ const insertUser = async ({ displayName, email, password, image }) => {
   return newUser;
 };
 
-module.exports = { findUserByEmail, insertUser };
+const showAllUsers = async () => {
+  const allUsers = await User.findAll();
+  const usersArrWithoutPass = allUsers.map(({ id, displayName, email, image }) => ({
+    id,
+    displayName,
+    email,
+    image,
+  }));
+  return usersArrWithoutPass;
+};
+
+module.exports = { findUserByEmail, insertUser, showAllUsers };
