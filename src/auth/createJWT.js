@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET;
 
-const createJWT = (value) => {
+const createJWT = (email) => {
   const jwtConfig = { algorithm: 'HS256' };
-  const token = jwt.sign({ data: { value } }, secret, jwtConfig);
+  const token = jwt.sign({ data: { email } }, secret, jwtConfig);
   return token;
 }; 
 
