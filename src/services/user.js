@@ -17,13 +17,28 @@ const insertUser = async ({ displayName, email, password, image }) => {
 
 const showAllUsers = async () => {
   const allUsers = await User.findAll();
-  const usersArrWithoutPass = allUsers.map(({ id, displayName, email, image }) => ({
-    id,
-    displayName,
-    email,
-    image,
-  }));
+  const usersArrWithoutPass = allUsers.map(
+    ({ id, displayName, email, image }) => ({
+      id,
+      displayName,
+      email,
+      image,
+    }),
+  );
   return usersArrWithoutPass;
 };
 
-module.exports = { findUserByEmail, insertUser, showAllUsers };
+const showUserById = async (userId) => {
+  const userById = await User.findOne({ where: userId });
+  if (!userById) {
+    return {
+      type: 'USER NOT FOUDN',
+      status: 404,
+      message: 'User does not exist',
+    };
+  }
+  delete userById.dataValues.password;
+  return { type: null, status: 200, message: userById };
+};
+
+module.exports = { findUserByEmail, insertUser, showAllUsers, showUserById };
