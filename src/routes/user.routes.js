@@ -6,9 +6,10 @@ const verifyToken = require('../middlewares/verifyToken.middleware');
 
 const router = express.Router();
 
+router.get('/', verifyToken, userControllers.showAllUsers);
+
 router.post(
   '/',
-  verifyToken,
   userMiddlewares.verifyNameAndPass,
   userMiddlewares.verifyEmail,
   userControllers.insertUser,
