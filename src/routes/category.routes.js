@@ -5,6 +5,10 @@ const router = express.Router();
 const categoryControllers = require('../controllers/category');
 const verifyToken = require('../middlewares/verifyToken.middleware');
 
-router.post('/', verifyToken, categoryControllers.insertCategory);
+router.use(verifyToken);
+
+router.post('/', categoryControllers.insertCategory);
+
+router.get('/', categoryControllers.showAllCategories);
 
 module.exports = router;

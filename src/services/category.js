@@ -5,4 +5,9 @@ const insertCategory = async (name) => {
   return newCategory;
 };
 
-module.exports = { insertCategory };
+const showAllCategories = async () => {
+  const allCategories = await Category.findAll();
+  return allCategories;
+};
+
+module.exports = { insertCategory, showAllCategories };
