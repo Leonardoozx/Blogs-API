@@ -26,4 +26,11 @@ router.put(
   postControllers.updatePostById,
 );
 
+router.delete(
+  '/:id',
+  postMiddlewares.verifyIfPostExists,
+  postMiddlewares.authorizeUser,
+  postControllers.deletePostById,
+);
+
 module.exports = router;
