@@ -16,4 +16,9 @@ const showPostById = async ({ params }, res) => {
   res.status(status).json(message);
 };
 
-module.exports = { insertPost, showAllPosts, showPostById };
+const updatePostById = async ({ body, params }, res) => {
+  const updatedPost = await postServices.updatePostById(body, +(params.id));
+  res.status(200).json(updatedPost);
+};
+
+module.exports = { insertPost, showAllPosts, showPostById, updatePostById };
