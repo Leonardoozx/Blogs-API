@@ -10,4 +10,10 @@ const showAllPosts = async (_req, res) => {
   res.status(200).json(allPosts);
 };
 
-module.exports = { insertPost, showAllPosts };
+const showPostById = async ({ params }, res) => {
+  const { type, status, message } = await postServices.showPostById(+params.id);
+  if (type) return res.status(status).json({ message });
+  res.status(status).json(message);
+};
+
+module.exports = { insertPost, showAllPosts, showPostById };
