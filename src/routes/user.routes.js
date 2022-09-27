@@ -6,9 +6,11 @@ const verifyToken = require('../middlewares/verifyToken.middleware');
 
 const router = express.Router();
 
-router.get('/', verifyToken, userControllers.showAllUsers);
+router.use(verifyToken);
 
-router.get('/:id', verifyToken, userControllers.showUserById);
+router.get('/', userControllers.showAllUsers);
+
+router.get('/:id', userControllers.showUserById);
 
 router.post(
   '/',
@@ -16,5 +18,7 @@ router.post(
   userMiddlewares.verifyEmail,
   userControllers.insertUser,
 );
+
+router.delete('/me', userControllers.deleteMyUser);
 
 module.exports = router;
