@@ -8,6 +8,8 @@ const postMiddlewares = require('../middlewares/post.middleware');
 
 router.use(verifyToken);
 
+router.get('/search', postControllers.findPostByQuery);
+
 router.post(
   '/',
   postMiddlewares.verifyInsertFields,
