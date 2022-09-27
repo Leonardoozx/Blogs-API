@@ -21,4 +21,15 @@ const updatePostById = async ({ body, params }, res) => {
   res.status(200).json(updatedPost);
 };
 
-module.exports = { insertPost, showAllPosts, showPostById, updatePostById };
+const deletePostById = async ({ params }, res) => {
+  await postServices.deletePostById(+params.id);
+  res.status(204).send();
+};
+
+module.exports = {
+  insertPost,
+  showAllPosts,
+  showPostById,
+  updatePostById,
+  deletePostById,
+};
