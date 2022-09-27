@@ -18,4 +18,9 @@ const showUserById = async ({ params }, res) => {
   res.status(status).json(message);
 };
 
-module.exports = { insertUser, showAllUsers, showUserById };
+const deleteMyUser = async ({ authorization }, res) => {
+  await userServices.deleteMyUser(authorization);
+  res.status(204).send();
+};
+
+module.exports = { insertUser, showAllUsers, showUserById, deleteMyUser };
