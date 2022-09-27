@@ -3,14 +3,12 @@ const { BlogPost, User, PostCategory, Category } = require('../models');
 const userServices = require('./user');
 
 const insertPost = async ({ title, content, categoryIds }, email) => {
-  const {
-    dataValues: { id: userId },
-  } = await userServices.findUserByEmail(email);
+  const user = await userServices.findUserByEmail(email);
   const date = new Date();
   const newPost = await BlogPost.create({
     title,
     content,
-    userId,
+    userId: user.id,
     published: date,
     updated: date,
   });
