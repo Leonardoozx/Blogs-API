@@ -38,8 +38,23 @@ const showPostById = async (id) => {
       { model: Category, as: 'categories' },
     ],
   });
-  if (!post) return { type: 'POST NOT FOUND', status: 404, message: 'Post does not exist' };
+  if (!post) {
+    return {
+      type: 'POST NOT FOUND',
+      status: 404,
+      message: 'Post does not exist',
+    };
+  }
   return { type: null, status: 200, message: post };
 };
 
-module.exports = { insertPost, showAllPosts, showPostById };
+const updatePostById = async ({ title, content }, id) => {
+  const updatePostId = await BlogPost.update(
+    { title, content, updated: new Date() },
+    { where: { id } },
+  );
+  const updatedPost = await showPostById(updatePostId);
+  return updatedPost.message;
+};
+
+module.exports = { insertPost, showAllPosts, showPostById, updatePostById };
