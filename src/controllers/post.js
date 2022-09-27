@@ -26,10 +26,20 @@ const deletePostById = async ({ params }, res) => {
   res.status(204).send();
 };
 
+const findPostByQuery = async ({ query }, res) => {
+  if (query.q) {
+    const posts = await postServices.findPostByQuery(query.q);
+    return res.status(200).json(posts);  
+  }
+  const allPosts = await postServices.showAllPosts();
+  res.status(200).json(allPosts);
+};
+
 module.exports = {
   insertPost,
   showAllPosts,
   showPostById,
   updatePostById,
   deletePostById,
+  findPostByQuery,
 };
