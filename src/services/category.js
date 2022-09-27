@@ -10,4 +10,9 @@ const showAllCategories = async () => {
   return allCategories;
 };
 
-module.exports = { insertCategory, showAllCategories };
+const findCategoryById = async (id) => {
+  const category = await Category.findOne({ where: id });
+  return category;
+};
+
+module.exports = { insertCategory, showAllCategories, findCategoryById };
