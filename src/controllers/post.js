@@ -5,4 +5,9 @@ const insertPost = async ({ body, authorization }, res) => {
   res.status(201).json(newPost);
 };
 
-module.exports = { insertPost };
+const showAllPosts = async (_req, res) => {
+  const allPosts = await postServices.showAllPosts();
+  res.status(200).json(allPosts);
+};
+
+module.exports = { insertPost, showAllPosts };
