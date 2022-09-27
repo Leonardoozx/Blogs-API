@@ -41,4 +41,9 @@ const showUserById = async (userId) => {
   return { type: null, status: 200, message: userById };
 };
 
-module.exports = { findUserByEmail, insertUser, showAllUsers, showUserById };
+const deleteMyUser = async (email) => {
+  const deletedUser = await User.destroy({ where: { email } });
+  return deletedUser;
+};
+
+module.exports = { findUserByEmail, insertUser, showAllUsers, showUserById, deleteMyUser };
