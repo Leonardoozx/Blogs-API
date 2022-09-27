@@ -6,12 +6,17 @@ const postControllers = require('../controllers/post');
 const verifyToken = require('../middlewares/verifyToken.middleware');
 const postMiddlewares = require('../middlewares/post.middleware');
 
+router.use(verifyToken);
+
 router.post(
   '/',
   postMiddlewares.verifyFields,
   postMiddlewares.verifyCategory,
-  verifyToken,
   postControllers.insertPost,
 );
+
+router.get('/', postControllers.showAllPosts);
+
+router.get('/:id', postControllers.showPostById);
 
 module.exports = router;
